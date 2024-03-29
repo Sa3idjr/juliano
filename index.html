@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fantastic Countdown</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #171717;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .countdown {
+    font-size: 3rem;
+    animation: fadeInCountdown 1s ease forwards;
+  }
+  .reveal {
+    display: none;
+    font-size: 4rem;
+    animation: revealText 1s ease forwards;
+    color: #e31b6d;
+    text-shadow: 2px 2px 4px #e31b6d;
+  }
+  @keyframes fadeInCountdown {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes revealText {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes rainbowText {
+    0% { color: #e31b6d; }
+    25% { color: #ffec19; }
+    50% { color: #18ff00; }
+    75% { color: #1bb8e3; }
+    100% { color: #e31b6d; }
+  }
+</style>
+</head>
+<body>
+<div class="countdown" id="countdown">10</div>
+<div class="reveal" id="reveal">kosom juliano</div>
+
+<script>
+  // Countdown function
+  function countdown() {
+    let count = 10;
+    const countdownElement = document.getElementById('countdown');
+    const revealElement = document.getElementById('reveal');
+    const countdownInterval = setInterval(() => {
+      count--;
+      countdownElement.textContent = count;
+      if (count === 0) {
+        clearInterval(countdownInterval);
+        revealElement.style.display = 'block';
+        revealElement.style.animation = 'rainbowText 4s linear infinite';
+      }
+    }, 1000);
+  }
+
+  // Call countdown function after page load
+  window.onload = function() {
+    countdown();
+  };
+</script>
+</body>
+</html>
